@@ -1,0 +1,14 @@
+torch>=2.6.0
+transformers>=4.50
+safetensors
+huggingface_hub>=0.24
+hf_transfer
+numpy
+scipy
+scikit-learn
+tqdm
+matplotlib
+datasets>=2.20
+vllm>=0.8.2
+latex2sympy2
+sympy
