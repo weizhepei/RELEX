@@ -19,7 +19,7 @@ BASE_MODEL=${BASE_MODEL:-Qwen/Qwen2.5-Math-1.5B}
 HUB_REPO=${HUB_REPO:-relex-rlvr/RLVR-Qwen2.5-Math-1.5B}
 CKPT_DIR=${CKPT_DIR:-$PWD/rlvr_traj/Qwen2.5-Math-1.5B}
 
-ROOT=$(cd "$(dirname "$0")/.." && pwd)
+ROOT=$(cd "$(dirname "$0")" && pwd)
 DELTA_DIR=$ROOT/outputs/deltas/Qwen2.5-Math-1.5B
 RELEX_DIR=$ROOT/outputs/relex/Qwen2.5-Math-1.5B/cutoff75
 SVD_CACHE=$ROOT/outputs/svd_cache/Qwen2.5-Math-1.5B/cutoff75

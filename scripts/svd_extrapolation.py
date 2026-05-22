@@ -88,7 +88,7 @@ import numpy as np
 import torch
 from scipy.optimize import curve_fit
 from tqdm import tqdm
-from transformers import AutoConfig, AutoModelForCausalLM
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 # Numerical convention
 # ────────────────────
@@ -1009,6 +1009,7 @@ def main():
         model.load_state_dict(predicted_state_dict)
         config.save_pretrained(step_dir)
         model.save_pretrained(step_dir, safe_serialization=True)
+        AutoTokenizer.from_pretrained(args.base_model).save_pretrained(step_dir)
 
         del predicted_state_dict
         del predictions[step]

@@ -8,6 +8,7 @@ Idempotent — skips steps already present.
 """
 
 import argparse
+import glob
 import os
 from huggingface_hub import snapshot_download
 
@@ -27,7 +28,10 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
     for n in range(1, args.num_steps + 1):
         dst = os.path.join(args.output_dir, f"global_step_{n}")
-        if os.path.exists(os.path.join(dst, "config.json")):
+        has_config = os.path.exists(os.path.join(dst, "config.json"))
+        has_weights = bool(glob.glob(os.path.join(dst, "*.safetensors"))) or \
+                      bool(glob.glob(os.path.join(dst, "pytorch_model*.bin")))
+        if has_config and has_weights:
             continue
         print(f"[{n}/{args.num_steps}] {args.hub_repo}@step_{n} -> {dst}", flush=True)
         snapshot_download(
